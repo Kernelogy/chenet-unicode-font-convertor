@@ -1,0 +1,713 @@
+<html>
+    <head>
+        <title>Convertor</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="./bootstrap/js/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="./bootstrap/js/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="./bootstrap/js/bootstrap.min.js"></script>        
+    </head>
+    <body>        
+        <div class="container">
+            <div class="jumbotron">
+                   
+                    <h1 class="display-4"> Chenet <img src="./images/baseline-cached-24px.svg"> Unicode </h1>
+                    <p class="lead">A simple tool to convert Chenet platinum tamil keymap to Tamil Unicode</p>
+                    <hr class="my-4">
+            </div>                  
+                    <div class="d-flex justify-content-center">
+                        <textarea class="form-control w-100" rows="10" cols="100" id="ct" aria-label="With textarea"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end" style="padding:5px; ">
+                        <span style="color:lightslategray">This is a sample text in unicode to test, Please feel free to work around</span>
+                    </div>
+                    <div class="d-flex justify-content-around" style="padding:25px; ">
+                        <div>
+                            <button id="butConvertToUnicode" type="button" class="btn btn-primary">Convert to Unicode</button>
+                        </div>
+                        <div>
+                            <button id="butConvertToChenet" type="button" class="btn btn-info">Convert to Chenet</button>
+                        </div>
+                    </div>
+        </div>
+
+    </body>
+</html>
+<script>
+    
+    
+$(document).ready(function(){
+    $("#ct").val('அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ ஒள ஃ\n'
+                +'க் ங் ச் ஞ் ட் ண் த் ந் ப் ம் ய் ர் ல் வ் ழ் ள் ற் ன்\n'
+                +'க ங ச ஞ ட ண த ந ப ம ய ர ல வ ழ ள ற ன\n'
+                +'கா ஙா சா ஞா டா ணா தா நா பா மா யா ரா லா வா ழா ளா றா னா\n'
+                +'கி ஙி சி ஞி டி ணி தி நி பி மி யி ரி லி வி ழி ளி றி னி\n'
+                +'கீ ஙீ சீ ஞீ டீ ணீ தீ நீ பீ மீ யீ ரீ ­ வீ ழீ ளீ றீ னீ\n'
+                +'கு ,,, சு ... டு ணு து நு பு மு யு ரு லு வு ழு ளு று னு\n'
+                +'கூ ... சூ ... டூ ணூ தூ நூ பூ மூ யூ ரூ லூ வூ ழூ ளூ றூ னூ\n'
+                +'கெ ஙெ செ ஞெ டெ ணெ தெ நெ பெ மெ யெ ரெ லெ வெ ழெ ளெ றெ னெ\n'
+                +'கே ஙே சே ஞே டே ணே தே நே பே மே யே ரே லே வே ழே ளே றே னே\n'
+                +'கை ஙை சை ஞை டை ணை தை நை பை மை யை ரை லை வை ழை ளை றை னை\n'
+                +'கொ ஙொ சொ ஞொ டொ ணொ தொ நொ பொ மொ யொ ரொ லொ வொ ழொ ளொ றொ னொ\n'
+                +'கோ ஙோ சோ ஞோ டோ ணோ தோ நோ போ மோ யோ ரோ லோ வோ ழோ ளோ றோ னோ\n'
+                +'கெள ஙெள செள ஞெள டெள ணெள தெள நெள பெள மெள யெள ரெள ழெள ளெள றெள னெள\n');
+    $("#butConvertToUnicode").click(function(){
+        var c = $("#ct").val();
+        //A B C D E F G H I J K J[ @
+        //அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ ஒள ஃ
+        c = c.replace('A', 'அ');
+        c = c.replace('B', 'ஆ');
+        c = c.replace('C', 'இ');
+        c = c.replace('D', 'ஈ');
+        c = c.replace('E', 'உ');
+        c = c.replace('F', 'ஊ');
+        c = c.replace('G', 'எ');
+        c = c.replace('H', 'ஏ');
+        c = c.replace('I', 'ஐ');
+        c = c.replace('J', 'ஒ');
+        c = c.replace('K', 'ஓ');
+        c = c.replace('J[', 'ஒள');
+        c = c.replace('@', 'ஃ');
+        //d e f g h i j k l m n o p q r s t u
+        //க் ங் ச் ஞ் ட் ண் த் ந் ப் ம் ய் ர் ல் வ் ழ் ள் ற் ன்
+        c = c.replace('d', 'க்');
+        c = c.replace('e', 'ங்');
+        c = c.replace('f', 'ச்');
+        c = c.replace('g', 'ஞ்');
+        c = c.replace('h', 'ட்');
+        c = c.replace('i', 'ண்');
+        c = c.replace('j', 'த்');
+        c = c.replace('k', 'ந்');
+        c = c.replace('l', 'ப்');
+        c = c.replace('m', 'ம்');
+        c = c.replace('n', 'ய்');
+        c = c.replace('o', 'ர்');
+        c = c.replace('p', 'ல்');
+        c = c.replace('q', 'வ்');
+        c = c.replace('r', 'ழ்');
+        c = c.replace('s', 'ள்');
+        c = c.replace('t', 'ற்');
+        c = c.replace('u', 'ன்');
+        //L M N O P Q R S T U V W X Y Z [ \ ]
+        //க ங ச ஞ ட ண த ந ப ம ய ர ல வ ழ ள ற ன
+        c = c.replace('L', 'க');
+        c = c.replace('M', 'ங');
+        c = c.replace('N', 'ச');
+        c = c.replace('O', 'ஞ');
+        c = c.replace('P', 'ட');
+        c = c.replace('Q', 'ண');
+        c = c.replace('R', 'த');
+        c = c.replace('S', 'ந');
+        c = c.replace('T', 'ப');
+        c = c.replace('U', 'ம');
+        c = c.replace('V', 'ய');
+        c = c.replace('W', 'ர');
+        c = c.replace('X', 'ல');
+        c = c.replace('Y', 'வ');
+        c = c.replace('Z', 'ழ');
+        c = c.replace('[', 'ள');
+        c = c.replace('\\', 'ற');
+        c = c.replace(']', 'ன');
+        //Lô Mô Nô Oô Pô Qô Rô Sô Tô Uô Vô Wô Xô Yô Zô [ô \ô ]ô
+        //கா ஙா சா ஞா டா ணா தா நா பா மா யா ரா லா வா ழா ளா றா னா       
+        c = c.replace('Lô', 'கா');
+        c = c.replace('Mô', 'ஙா');
+        c = c.replace('Nô', 'சா');
+        c = c.replace('Oô', 'ஞா');
+        c = c.replace('Pô', 'டா');
+        c = c.replace('Qô', 'ணா');
+        c = c.replace('Rô', 'தா');
+        c = c.replace('Sô', 'நா');
+        c = c.replace('Tô', 'பா');
+        c = c.replace('Uô', 'மா');
+        c = c.replace('Vô', 'யா');
+        c = c.replace('Wô', 'ரா');
+        c = c.replace('Xô', 'லா');
+        c = c.replace('Yô', 'வா');
+        c = c.replace('Zô', 'ழா');
+        c = c.replace('[ô', 'ளா');
+        c = c.replace('\\ô', 'றா');
+        c = c.replace(']ô', 'னா');  
+        //¸ Mõ º Oõ ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É
+        //கி ஙி சி ஞி டி ணி தி நி பி மி யி ரி லி வி ழி ளி றி னி 
+        c = c.replace('¸', 'கி');
+        c = c.replace('Mõ', 'ஙி');
+        c = c.replace('ஙõ', 'ஙி');
+        c = c.replace('º', 'சி');
+        c = c.replace('Oõ', 'ஞி');
+        c = c.replace('ஞõ', 'ஞி');
+        c = c.replace('¼', 'டி');
+        c = c.replace('½', 'ணி');
+        c = c.replace('¾', 'தி');
+        c = c.replace('¿', 'நி');
+        c = c.replace('À', 'பி');
+        c = c.replace('Á', 'மி');
+        c = c.replace('Â', 'யி');
+        c = c.replace('Ã', 'ரி');
+        c = c.replace('Ä', 'லி');
+        c = c.replace('Å', 'வி');
+        c = c.replace('Æ', 'ழி');
+        c = c.replace('Ç', 'ளி');
+        c = c.replace('È', 'றி');
+        c = c.replace('É', 'னி');  
+        //¡ Mö £ Oö ¥ ¦ § ¨ © ª « ¬ ­ ® ¯ ° ± ²
+        //கீ ஙீ சீ ஞீ டீ ணீ தீ நீ பீ மீ ரீ லீ வீ ழீ ளீ றீ னீ  
+        //ஙö சீ ஞö
+        c = c.replace('¡', 'கீ');
+        c = c.replace('Mö', 'ஙீ');
+        c = c.replace('ஙö', 'ஙீ');
+        c = c.replace('£', 'சீ');
+        c = c.replace('Oö', 'ஞீ');
+        c = c.replace('ஞö', 'ஞீ');
+        c = c.replace('¥', 'டீ');
+        c = c.replace('¦', 'ணீ');
+        c = c.replace('§', 'தீ');
+        c = c.replace('¨', 'நீ');
+        c = c.replace('©', 'பீ');
+        c = c.replace('ª', 'மீ');
+        c = c.replace('«', 'யீ');
+        c = c.replace('¬', 'ரீ');
+        c = c.replace('X', 'லீ');//--------------------
+        c = c.replace('®', 'வீ');
+        c = c.replace('¯', 'ழீ');
+        c = c.replace('°', 'ளீ');
+        c = c.replace('±', 'றீ');
+        c = c.replace('²', 'னீ');  
+        //á ... ã ... å æ ç è é ê ë ì í î ï ð ñ ò
+        //கு ... சு ... டு ணு து நு பு மு யு ரு லு வு ழு ளு று னு 
+        c = c.replace('á', 'கு');
+        // c = c.replace('...', '');
+        c = c.replace('ã', 'சு');
+        // c = c.replace('...', 'ஞ');
+        c = c.replace('å', 'டு');
+        c = c.replace('æ', 'ணு');
+        c = c.replace('ç', 'து');
+        c = c.replace('è', 'நு');
+        c = c.replace('é', 'பு');
+        c = c.replace('ê', 'மு');
+        c = c.replace('ë', 'யு');
+        c = c.replace('ì', 'ரு');
+        c = c.replace('í', 'லு');
+        c = c.replace('î', 'வு');
+        c = c.replace('ï', 'ழு');
+        c = c.replace('ð', 'ளு');
+        c = c.replace('ñ', 'று');
+        c = c.replace('ò', 'னு');     
+        //Ï ... Ñ ... Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à
+        //கூ ... சூ ... டூ ணூ தூ நூ பூ மூ யூ ரூ லூ வூ ழூ ளூ றூ னூ                                                 
+        c = c.replace('Ï', 'கூ');
+        // c = c.replace('...', 'ங');
+        c = c.replace('Ñ', 'சூ');
+        // c = c.replace('...', 'ஞ');
+        c = c.replace('Ó', 'டூ');
+        c = c.replace('Ô', 'ணூ');
+        c = c.replace('Õ', 'தூ');
+        c = c.replace('Ö', 'நூ');
+        c = c.replace('×', 'பூ');
+        c = c.replace('Ø', 'மூ');
+        c = c.replace('Ù', 'யூ');
+        c = c.replace('Ú', 'ரூ');
+        c = c.replace('Û', 'லூ');
+        c = c.replace('Ü', 'வூ');
+        c = c.replace('Ý', 'ழூ');
+        c = c.replace('Þ', 'ளூ');
+        c = c.replace('ß', 'றூ');
+        c = c.replace('à', 'னூ');
+        //ùL ùM ùN ùO ùP ùQ ùR ùS ùT ùU ùV ùW ùX ùY ùZ ù[ ù\ ù]
+        //கெ ஙெ செ ஞெ டெ ணெ தெ நெ பெ மெ யெ ரெ லெ வெ ழெ ளெ றெ னெ 
+        c = c.replace('ùL', 'கெ');
+        c = c.replace('ùM', 'ஙெ');
+        c = c.replace('ùN', 'செ');
+        c = c.replace('ùO', 'ஞெ');
+        c = c.replace('ùP', 'டெ');
+        c = c.replace('ùQ', 'ணெ');
+        c = c.replace('ùR', 'தெ');
+        c = c.replace('ùS', 'நெ');
+        c = c.replace('ùT', 'பெ');
+        c = c.replace('ùU', 'மெ');
+        c = c.replace('ùV', 'யெ');
+        c = c.replace('ùW', 'ரெ');
+        c = c.replace('ùX', 'லெ');
+        c = c.replace('ùலீ', 'லெ');
+        c = c.replace('ùY', 'வெ');
+        c = c.replace('ùZ', 'ழெ');
+        c = c.replace('ù[', 'ளெ');
+        c = c.replace('ù\\', 'றெ');
+        c = c.replace('ù]', 'னெ');  
+        // úL úM úN úO úP úQ úR úS úT úU úV úW úX úY úZ ú[ ú\ ú]
+        // கே ஙே சே ஞே டே ணே தே நே பே மே யே ரே லே வே ழே ளே றே னே                      
+        // úக úங úச úஞ úட úண úத úந úப úம úய úர úல úவ úழ úள úற úன
+        // ùலீ
+        c = c.replace('úL', 'கே');
+        c = c.replace('úக', 'கே');
+        c = c.replace('úM', 'ஙே');
+        c = c.replace('úங', 'ஙே');
+        c = c.replace('úN', 'சே');
+        c = c.replace('úச', 'சே');
+        c = c.replace('úO', 'ஞே');
+        c = c.replace('úஞ', 'ஞே');
+        c = c.replace('úP', 'டே');
+        c = c.replace('úட', 'டே');
+        c = c.replace('úQ', 'ணே');
+        c = c.replace('úண', 'ணே');
+        c = c.replace('úR', 'தே');
+        c = c.replace('úத', 'தே');
+        c = c.replace('úS', 'நே');
+        c = c.replace('úந', 'நே');
+        c = c.replace('úT', 'பே');
+        c = c.replace('úப', 'பே');
+        c = c.replace('úU', 'மே');
+        c = c.replace('úம', 'மே');
+        c = c.replace('úV', 'யே');
+        c = c.replace('úய', 'யே');
+        c = c.replace('úW', 'ரே');
+        c = c.replace('úர', 'ரே');
+        c = c.replace('úX', 'லே');
+        c = c.replace('úல', 'லே');        
+        c = c.replace('úY', 'வே');
+        c = c.replace('úவ', 'வே');
+        c = c.replace('úZ', 'ழே');
+        c = c.replace('úழ', 'ழே');
+        c = c.replace('ú[', 'ளே');
+        c = c.replace('úள', 'ளே');
+        c = c.replace('ú\\', 'றே');
+        c = c.replace('úற', 'றே');
+        c = c.replace('ú]', 'னே');        
+        c = c.replace('úன', 'னே'); 
+        // ûL ûM ûN ûO ûP ûQ ûR ûS ûT ûU ûV ûW ûX ûY ûZ û[ û\ û]
+        // கை ஙை சை ஞை டை ணை தை நை பை யை ரை லை வை ழை ளை றை னை               
+        c = c.replace('ûL', 'கை');
+        c = c.replace('ûM', 'ஙை');
+        c = c.replace('ûN', 'சை');
+        c = c.replace('ûO', 'ஞை');
+        c = c.replace('ûP', 'டை');
+        c = c.replace('ûQ', 'ணை');
+        c = c.replace('ûR', 'தை');
+        c = c.replace('ûS', 'நை');
+        c = c.replace('ûT', 'பை');
+        c = c.replace('ûU', 'மை');
+        c = c.replace('ûV', 'யை');
+        c = c.replace('ûW', 'ரை');
+        c = c.replace('ûX', 'லை');
+        c = c.replace('ûY', 'வை');
+        c = c.replace('ûZ', 'ழை');
+        c = c.replace('û[', 'ளை');
+        c = c.replace('û\\', 'றை');
+        c = c.replace('û]', 'னை'); 
+        // ùLô ùMô ùNô ùOô ùPô ùQô ùRô ùSô ùTô ùUô ùVô ùWô ùXô ùYô ùZô ù[ô ù\ô ù]ô
+        // கொ ஙொ சொ ஞொ டொ ணொ தொ நொ பொ யொ ரொ லொ வொ ழொ ளொ றொ னொ               
+        c = c.replace('ùLô', 'கொ');
+        c = c.replace('ùMô', 'ஙொ');
+        c = c.replace('ùNô', 'சொ');
+        c = c.replace('ùOô', 'ஞொ');
+        c = c.replace('ùPô', 'டொ');
+        c = c.replace('ùQô', 'ணொ');
+        c = c.replace('ùRô', 'தொ');
+        c = c.replace('ùSô', 'நொ');
+        c = c.replace('ùTô', 'பொ');
+        c = c.replace('ùUô', 'மொ');
+        c = c.replace('ùVô', 'யொ');
+        c = c.replace('ùWô', 'ரொ');
+        c = c.replace('ùXô', 'லொ');
+        c = c.replace('லெô', 'லொ');
+        c = c.replace('ùYô', 'வொ');
+        c = c.replace('ùZô', 'ழொ');
+        c = c.replace('ù[ô', 'ளொ');
+        c = c.replace('ù\\ô', 'றொ');
+        c = c.replace('ù]ô', 'னொ');   
+        // úLô úMô úNô úOô úPô úQô úRô úSô úTô úUô úVô úWô úXô úYô úZô ú[ô ú\ô ú]ô
+        // கோ ஙோ சோ ஞோ டோ ணோ தோ நோ போ யோ ரோ லோ வோ ழோ ளோ றோ னோ             
+        // கோô ஙோô சோô ஞோô டோô ணோô தோô நோô போô மோô யோô ரோô லோô வோô ழோô ளோô றோô னோô        
+        c = c.replace('úL', 'கோ');
+        c = c.replace('கோô', 'கோ');
+        c = c.replace('úM', 'ஙோ');
+        c = c.replace('ஙோô', 'ஙோ');
+        c = c.replace('úN', 'சோ');
+        c = c.replace('சோô', 'சோ');
+        c = c.replace('úO', 'ஞோ');
+        c = c.replace('ஞோô', 'ஞோ');
+        c = c.replace('úP', 'டோ');
+        c = c.replace('டோô', 'டோ');
+        c = c.replace('úQ', 'ணோ');
+        c = c.replace('ணோô', 'ணோ');
+        c = c.replace('úR', 'தோ');
+        c = c.replace('தோô', 'தோ');
+        c = c.replace('úS', 'நோ');
+        c = c.replace('நோô', 'நோ');
+        c = c.replace('úT', 'போ');
+        c = c.replace('போô', 'போ');
+        c = c.replace('úU', 'மோ');
+        c = c.replace('மோô', 'மோ');
+        c = c.replace('úV', 'யோ');
+        c = c.replace('யோô', 'யோ');
+        c = c.replace('úW', 'ரோ');
+        c = c.replace('ரோô', 'ரோ');
+        c = c.replace('úX', 'லோ');
+        c = c.replace('லோô', 'லோ');
+        c = c.replace('úY', 'வோ');
+        c = c.replace('வோô', 'வோ');
+        c = c.replace('úZ', 'ழோ');
+        c = c.replace('ழோô', 'ழோ');
+        c = c.replace('ú[', 'ளோ');
+        c = c.replace('ளோô', 'ளோ');
+        c = c.replace('ú\\', 'றோ');
+        c = c.replace('றோô', 'றோ');
+        c = c.replace('ú]', 'னோ');        
+        c = c.replace('னோô', 'னோ'); 
+        // ùL[ ùM[ ùN[ ùO[ ùP[ ùQ[ ùR[ ùS[ ùT[ ùU[ ùV[ ùW[ ùZ[ ù[[ ù\[ ù][
+        // கெள ஙெள செள ஞெள டெள ணெள தெள நெள பெள மெள யெள ரெள லெள வெள ழெள ளெள றெள னெள        
+        c = c.replace('ùL[', 'கெள');
+        c = c.replace('ùM[', 'ஙெள');
+        c = c.replace('ùN[', 'செள');
+        c = c.replace('ùO[', 'ஞெள');
+        c = c.replace('ùP[', 'டெள');
+        c = c.replace('ùQ[', 'ணெள');
+        c = c.replace('ùR[', 'தெள');
+        c = c.replace('ùS[', 'நெள');
+        c = c.replace('ùT[', 'பெள');
+        c = c.replace('ùU[', 'மெள');
+        c = c.replace('ùV[', 'யெள');
+        c = c.replace('ùW[', 'ரெள');
+        c = c.replace('ùX[', 'லெள');
+        c = c.replace('ùY[', 'வெள');
+        c = c.replace('ùZ[', 'ழெள');
+        c = c.replace('ù[[', 'ளெள');
+        c = c.replace('ù\\[', 'றெள');
+        c = c.replace('ù][', 'னெள');        
+        $("#ct").val(c);
+        // alert(c);
+    });
+    $("#butConvertToChenet").click(function(){
+        var c = $("#ct").val();
+        //A B C D E F G H I J K J[ @
+        //அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ ஒள ஃ
+        c = c.replace('அ','A');
+        c = c.replace('ஆ', 'B');
+        c = c.replace('இ', 'C');
+        c = c.replace('ஈ', 'D');
+        c = c.replace('உ', 'E');
+        c = c.replace('ஊ', 'F');
+        c = c.replace('எ', 'G');
+        c = c.replace('ஏ', 'H');
+        c = c.replace('ஐ', 'I');
+        c = c.replace('ஒ', 'J');
+        c = c.replace('ஓ', 'K');
+        c = c.replace('ஒள', 'J[');        
+        c = c.replace('ஃ', '@');
+        //d e f g h i j k l m n o p q r s t u
+        //க் ங் ச் ஞ் ட் ண் த் ந் ப் ம் ய் ர் ல் வ் ழ் ள் ற் ன்
+        c = c.replace('க்', 'd');
+        c = c.replace('ங்', 'e');
+        c = c.replace('ச்', 'f');
+        c = c.replace('ஞ்', 'g');
+        c = c.replace('ட்', 'h');
+        c = c.replace('ண்', 'i');
+        c = c.replace('த்', 'j');
+        c = c.replace('ந்', 'k');
+        c = c.replace('ப்', 'l');
+        c = c.replace('ம்', 'm');
+        c = c.replace('ய்', 'n');
+        c = c.replace('ர்', 'o');
+        c = c.replace('ல்', 'p');
+        c = c.replace('வ்', 'q');
+        c = c.replace('ழ்', 'r');
+        c = c.replace('ள்', 's');
+        c = c.replace('ற்', 't');
+        c = c.replace('ன்', 'u');
+        //L M N O P Q R S T U V W X Y Z [ \ ]
+        //க ங ச ஞ ட ண த ந ப ம ய ர ல வ ழ ள ற ன
+        c = c.replace('க', 'L');
+        c = c.replace('ங', 'M');
+        c = c.replace('ச', 'N');
+        c = c.replace('ஞ', 'O');
+        c = c.replace('ட', 'P');
+        c = c.replace('ண', 'Q');
+        c = c.replace('த', 'R');
+        c = c.replace('ந', 'S');
+        c = c.replace('ப', 'T');
+        c = c.replace('ம', 'U');
+        c = c.replace('ய', 'V');
+        c = c.replace('ர', 'W');
+        c = c.replace('ல', 'X');
+        c = c.replace('வ', 'Y');
+        c = c.replace('ழ', 'Z');
+        c = c.replace('ள', '[');
+        c = c.replace('ற' ,'\\');
+        c = c.replace('ன', ']');
+        //Lô Mô Nô Oô Pô Qô Rô Sô Tô Uô Vô Wô Xô Yô Zô [ô \ô ]ô
+        //கா ஙா சா ஞா டா ணா தா நா பா மா யா ரா லா வா ழா ளா றா னா       
+        c = c.replace('கா' ,'Lô');
+        c = c.replace('ஙா', 'Mô');
+        c = c.replace('சா', 'Nô');
+        c = c.replace('ஞா', 'Oô');
+        c = c.replace('டா', 'Pô');
+        c = c.replace('ணா', 'Qô');
+        c = c.replace('தா', 'Rô');
+        c = c.replace('நா', 'Sô');
+        c = c.replace('பா', 'Tô');
+        c = c.replace('மா', 'Uô');
+        c = c.replace('யா', 'Vô');
+        c = c.replace('ரா', 'Wô');
+        c = c.replace('லா', 'Xô');
+        c = c.replace('வா', 'Yô');
+        c = c.replace('ழா', 'Zô');
+        c = c.replace('ளா', '[ô');
+        c = c.replace('றா', '\\ô');
+        c = c.replace('னா', ']ô');  
+        //¸ Mõ º Oõ ¼ ½ ¾ ¿ À Á Â Ã Ä Å Æ Ç È É
+        //கி ஙி சி ஞி டி ணி தி நி பி மி யி ரி லி வி ழி ளி றி னி 
+        c = c.replace('கி','¸');
+        c = c.replace('ஙி','Mõ');
+        c = c.replace('ஙி','ஙõ');
+        c = c.replace('சி','º');
+        c = c.replace('ஞி','Oõ');
+        c = c.replace('ஞி','ஞõ');
+        c = c.replace('டி','¼');
+        c = c.replace('ணி','½');
+        c = c.replace('தி','¾');
+        c = c.replace('நி','¿');
+        c = c.replace('பி','À');
+        c = c.replace('மி','Á');
+        c = c.replace('யி','Â');
+        c = c.replace('ரி','Ã');
+        c = c.replace('லி','Ä');
+        c = c.replace('வி','Å');
+        c = c.replace('ழி','Æ');
+        c = c.replace('ளி','Ç');
+        c = c.replace('றி','È');
+        c = c.replace('னி','É');  
+        //¡ Mö £ Oö ¥ ¦ § ¨ © ª « ¬ ­ ® ¯ ° ± ²
+        //கீ ஙீ சீ ஞீ டீ ணீ தீ நீ பீ மீ ரீ லீ வீ ழீ ளீ றீ னீ  
+        //ஙö சீ ஞö
+        c = c.replace('கீ','¡');
+        c = c.replace('ஙீ','Mö');
+        c = c.replace('ஙீ','ஙö');
+        c = c.replace('சீ','£');
+        c = c.replace('ஞீ','Oö');
+        c = c.replace('ஞீ','ஞö');
+        c = c.replace('டீ','¥');
+        c = c.replace('ணீ','¦');
+        c = c.replace('தீ','§');
+        c = c.replace('நீ','¨');
+        c = c.replace('பீ','©');
+        c = c.replace('மீ','ª');
+        c = c.replace('யீ','«');
+        c = c.replace('ரீ','¬');
+        c = c.replace('லீ','X');//--------------------
+        c = c.replace('வீ','®');
+        c = c.replace('ழீ','¯');
+        c = c.replace('ளீ','°');
+        c = c.replace('றீ','±');
+        c = c.replace('னீ','²');  
+        //á ... ã ... å æ ç è é ê ë ì í î ï ð ñ ò
+        //கு ... சு ... டு ணு து நு பு மு யு ரு லு வு ழு ளு று னு 
+        c = c.replace( 'கு','á');
+        // c = c.replace('...', '');
+        c = c.replace( 'சு','ã');
+        // c = c.replace('...', 'ஞ');
+        c = c.replace('டு','å');
+        c = c.replace('ணு','æ');
+        c = c.replace('து','ç');
+        c = c.replace('நு','è');
+        c = c.replace('பு','é');
+        c = c.replace('மு','ê');
+        c = c.replace('யு','ë');
+        c = c.replace('ரு','ì');
+        c = c.replace('லு','í');
+        c = c.replace('வு','î');
+        c = c.replace('ழு','ï');
+        c = c.replace('ளு','ð');
+        c = c.replace('று','ñ');
+        c = c.replace('னு','ò',);     
+        //Ï ... Ñ ... Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß à
+        //கூ ... சூ ... டூ ணூ தூ நூ பூ மூ யூ ரூ லூ வூ ழூ ளூ றூ னூ                                                 
+        c = c.replace('கூ','Ï');
+        // c = c.replace('...', 'ங');
+        c = c.replace('சூ','Ñ');
+        // c = c.replace('...', 'ஞ');
+        c = c.replace('டூ','Ó');
+        c = c.replace('ணூ','Ô');
+        c = c.replace('தூ','Õ');
+        c = c.replace('நூ','Ö');
+        c = c.replace('பூ','×');
+        c = c.replace('மூ','Ø');
+        c = c.replace('யூ','Ù');
+        c = c.replace('ரூ','Ú');
+        c = c.replace('லூ','Û');
+        c = c.replace('வூ','Ü');
+        c = c.replace('ழூ','Ý');
+        c = c.replace('ளூ','Þ');
+        c = c.replace('றூ','ß');
+        c = c.replace('னூ','à');
+        //ùL ùM ùN ùO ùP ùQ ùR ùS ùT ùU ùV ùW ùX ùY ùZ ù[ ù\ ù]
+        //கெ ஙெ செ ஞெ டெ ணெ தெ நெ பெ மெ யெ ரெ லெ வெ ழெ ளெ றெ னெ 
+        c = c.replace('கெ','ùL');
+        c = c.replace('ஙெ','ùM');
+        c = c.replace('செ','ùN');
+        c = c.replace('ஞெ','ùO');
+        c = c.replace('டெ','ùP');
+        c = c.replace('ணெ','ùQ');
+        c = c.replace('தெ','ùR');
+        c = c.replace('நெ','ùS');
+        c = c.replace('பெ','ùT');
+        c = c.replace('மெ','ùU');
+        c = c.replace('யெ','ùV');
+        c = c.replace('ரெ','ùW');
+        c = c.replace('லெ','ùX');
+        c = c.replace('லெ','ùலீ');
+        c = c.replace('வெ','ùY');
+        c = c.replace('ழெ','ùZ');
+        c = c.replace('ளெ','ù[');
+        c = c.replace('றெ','ù\\');
+        c = c.replace('னெ','ù]');  
+        // úL úM úN úO úP úQ úR úS úT úU úV úW úX úY úZ ú[ ú\ ú]
+        // கே ஙே சே ஞே டே ணே தே நே பே மே யே ரே லே வே ழே ளே றே னே                      
+        // úக úங úச úஞ úட úண úத úந úப úம úய úர úல úவ úழ úள úற úன
+        // ùலீ
+        c = c.replace('கே','úL');
+        c = c.replace('கே','úக');
+        c = c.replace('ஙே','úM');
+        c = c.replace('ஙே','úங');
+        c = c.replace('சே','úN');
+        c = c.replace('சே','úச');
+        c = c.replace('ஞே','úO');
+        c = c.replace('ஞே','úஞ');
+        c = c.replace('டே','úP');
+        c = c.replace('டே','úட');
+        c = c.replace('ணே','úQ');
+        c = c.replace('ணே','úண');
+        c = c.replace('தே','úR');
+        c = c.replace('தே','úத');
+        c = c.replace('நே','úS');
+        c = c.replace('நே','úந');
+        c = c.replace('பே','úT');
+        c = c.replace('பே','úப');
+        c = c.replace('மே','úU');
+        c = c.replace('மே','úம');
+        c = c.replace('யே','úV');
+        c = c.replace('யே','úய');
+        c = c.replace('ரே','úW');
+        c = c.replace('ரே','úர');
+        c = c.replace('லே','úX');
+        c = c.replace('லே','úல');        
+        c = c.replace('வே','úY');
+        c = c.replace('வே','úவ');
+        c = c.replace('ழே','úZ');
+        c = c.replace('ழே','úழ');
+        c = c.replace('ளே','ú[');
+        c = c.replace('ளே','úள');
+        c = c.replace('றே','ú\\');
+        c = c.replace('றே','úற');
+        c = c.replace('னே','ú]');        
+        c = c.replace('னே','úன'); 
+        // ûL ûM ûN ûO ûP ûQ ûR ûS ûT ûU ûV ûW ûX ûY ûZ û[ û\ û]
+        // கை ஙை சை ஞை டை ணை தை நை பை யை ரை லை வை ழை ளை றை னை               
+        c = c.replace('கை','ûL');
+        c = c.replace('ஙை','ûM');
+        c = c.replace('சை','ûN');
+        c = c.replace('ஞை','ûO');
+        c = c.replace('டை','ûP');
+        c = c.replace('ணை','ûQ');
+        c = c.replace('தை','ûR');
+        c = c.replace('நை','ûS');
+        c = c.replace('பை','ûT');
+        c = c.replace('மை','ûU');
+        c = c.replace('யை','ûV');
+        c = c.replace('ரை','ûW');
+        c = c.replace('லை','ûX');
+        c = c.replace('வை','ûY');
+        c = c.replace('ழை','ûZ');
+        c = c.replace('ளை','û[');
+        c = c.replace('றை','û\\');
+        c = c.replace('னை','û]'); 
+        // ùLô ùMô ùNô ùOô ùPô ùQô ùRô ùSô ùTô ùUô ùVô ùWô ùXô ùYô ùZô ù[ô ù\ô ù]ô
+        // கொ ஙொ சொ ஞொ டொ ணொ தொ நொ பொ யொ ரொ லொ வொ ழொ ளொ றொ னொ               
+        c = c.replace('கொ','ùLô');
+        c = c.replace('ஙொ','ùMô');
+        c = c.replace('சொ','ùNô');
+        c = c.replace('ஞொ','ùOô');
+        c = c.replace('டொ','ùPô');
+        c = c.replace('ணொ','ùQô');
+        c = c.replace('தொ','ùRô');
+        c = c.replace('நொ','ùSô');
+        c = c.replace('பொ','ùTô');
+        c = c.replace('மொ','ùUô');
+        c = c.replace('யொ','ùVô');
+        c = c.replace('ரொ','ùWô');
+        c = c.replace('லொ','ùXô');
+        c = c.replace('லொ','லெô');
+        c = c.replace('வொ','ùYô');
+        c = c.replace('ழொ','ùZô');
+        c = c.replace('ளொ','ù[ô');
+        c = c.replace('றொ','ù\\ô');
+        c = c.replace('னொ','ù]ô');   
+        // úLô úMô úNô úOô úPô úQô úRô úSô úTô úUô úVô úWô úXô úYô úZô ú[ô ú\ô ú]ô
+        // கோ ஙோ சோ ஞோ டோ ணோ தோ நோ போ யோ ரோ லோ வோ ழோ ளோ றோ னோ             
+        // கோô ஙோô சோô ஞோô டோô ணோô தோô நோô போô மோô யோô ரோô லோô வோô ழோô ளோô றோô னோô        
+        c = c.replace('கோ','úL');
+        c = c.replace('கோ','கோô');
+        c = c.replace('ஙோ','úM');
+        c = c.replace('ஙோ','ஙோô');
+        c = c.replace('சோ','úN');
+        c = c.replace('சோ','சோô');
+        c = c.replace('ஞோ','úO');
+        c = c.replace('ஞோ','ஞோô');
+        c = c.replace('டோ','úP');
+        c = c.replace('டோ','டோô');
+        c = c.replace('ணோ','úQ');
+        c = c.replace('ணோ','ணோô');
+        c = c.replace('தோ','úR');
+        c = c.replace('தோ','தோô');
+        c = c.replace('நோ','úS');
+        c = c.replace('நோ','நோô');
+        c = c.replace('போ','úT');
+        c = c.replace('போ','போô');
+        c = c.replace('மோ','úU');
+        c = c.replace('மோ','மோô');
+        c = c.replace('யோ','úV');
+        c = c.replace('யோ','யோô');
+        c = c.replace('ரோ','úW');
+        c = c.replace('ரோ','ரோô');
+        c = c.replace('லோ','úX');
+        c = c.replace('லோ','லோô');
+        c = c.replace('வோ','úY');
+        c = c.replace('வோ','வோô');
+        c = c.replace('ழோ','úZ');
+        c = c.replace('ழோ','ழோô');
+        c = c.replace('ளோ','ú[');
+        c = c.replace('ளோ','ளோô');
+        c = c.replace('றோ','ú\\');
+        c = c.replace('றோ','றோô');
+        c = c.replace('னோ','ú]');        
+        c = c.replace('னோ','னோô'); 
+        // ùL[ ùM[ ùN[ ùO[ ùP[ ùQ[ ùR[ ùS[ ùT[ ùU[ ùV[ ùW[ ùZ[ ù[[ ù\[ ù][
+        // கெள ஙெள செள ஞெள டெள ணெள தெள நெள பெள மெள யெள ரெள லெள வெள ழெள ளெள றெள னெள        
+        c = c.replace('கெள','ùL[');
+        c = c.replace('ஙெள','ùM[');
+        c = c.replace('செள','ùN[');
+        c = c.replace('ஞெள','ùO[');
+        c = c.replace('டெள','ùP[');
+        c = c.replace('ணெள','ùQ[');
+        c = c.replace('தெள','ùR[');
+        c = c.replace('நெள','ùS[');
+        c = c.replace('பெள','ùT[');
+        c = c.replace('மெள','ùU[');
+        c = c.replace('யெள','ùV[');
+        c = c.replace('ரெள','ùW[');
+        c = c.replace('லெள','ùX[');
+        c = c.replace('வெள','ùY[');
+        c = c.replace('ழெள','ùZ[');
+        c = c.replace('ளெள','ù[[');
+        c = c.replace('றெள','ù\\[');
+        c = c.replace('னெள','ù][');        
+        $("#ct").val(c);
+        // alert(c);
+    });    
+});    
+</script>
